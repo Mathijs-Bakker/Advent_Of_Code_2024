@@ -1,2 +1,2 @@
-# Advent_Of_Code_224
+# Advent Of Code 2024
 Rust
