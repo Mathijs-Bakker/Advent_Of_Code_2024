@@ -52,8 +52,7 @@ impl Iterator for Data<'_> {
                         self.remaining_data = &remaining[closing_paren_idx + 1..];
 
                         multiplied_nums.push(
-                            numbers[0].parse::<u32>().unwrap_or(0)
-                                * numbers[1].parse::<u32>().unwrap_or(0),
+                            numbers[0].parse::<u32>().unwrap() * numbers[1].parse::<u32>().unwrap(),
                         );
                     }
                 }
