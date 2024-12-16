@@ -1,3 +1,3 @@
 fn main() {
-    println!("Hello, world!");
+    let data = include_str!("../data/example_input.txt");
 }
