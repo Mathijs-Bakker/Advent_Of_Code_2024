@@ -46,17 +46,17 @@ impl Search {
             for col_idx in 0..data_len {
                 let current_char = data[row_idx][col_idx];
 
-                let north_margin = row_idx >= search_word.len() - 1;
-                let south_margin = row_idx < data_len - search_word.len() + 1;
-                let west_margin = col_idx >= search_word.len() - 1;
-                let east_margin = col_idx < data_len - search_word.len() + 1;
+                let north_limit = row_idx >= search_word.len() - 1;
+                let south_limit = row_idx < data_len - search_word.len() + 1;
+                let west_limit = col_idx >= search_word.len() - 1;
+                let east_limit = col_idx < data_len - search_word.len() + 1;
 
                 if current_char == search_word[0] {
                     word_count +=
-                        scan_north(north_margin, data, search_word, row_idx, col_idx, dir.north)
+                        scan_north(north_limit, data, search_word, row_idx, col_idx, dir.north)
                             + scan_north_east(
-                                north_margin,
-                                east_margin,
+                                north_limit,
+                                east_limit,
                                 data,
                                 search_word,
                                 row_idx,
@@ -64,10 +64,10 @@ impl Search {
                                 dir.north,
                                 dir.east,
                             )
-                            + scan_east(east_margin, data, search_word, row_idx, col_idx, dir.east)
+                            + scan_east(east_limit, data, search_word, row_idx, col_idx, dir.east)
                             + scan_south_east(
-                                south_margin,
-                                east_margin,
+                                south_limit,
+                                east_limit,
                                 data,
                                 search_word,
                                 row_idx,
@@ -76,7 +76,7 @@ impl Search {
                                 dir.east,
                             )
                             + scan_south(
-                                south_margin,
+                                south_limit,
                                 data,
                                 search_word,
                                 row_idx,
@@ -84,8 +84,8 @@ impl Search {
                                 dir.south,
                             )
                             + scan_south_west(
-                                south_margin,
-                                west_margin,
+                                south_limit,
+                                west_limit,
                                 data,
                                 search_word,
                                 row_idx,
@@ -93,10 +93,10 @@ impl Search {
                                 dir.south,
                                 dir.west,
                             )
-                            + scan_west(west_margin, data, search_word, row_idx, col_idx, dir.west)
+                            + scan_west(west_limit, data, search_word, row_idx, col_idx, dir.west)
                             + scan_north_west(
-                                north_margin,
-                                west_margin,
+                                north_limit,
+                                west_limit,
                                 data,
                                 search_word,
                                 row_idx,
